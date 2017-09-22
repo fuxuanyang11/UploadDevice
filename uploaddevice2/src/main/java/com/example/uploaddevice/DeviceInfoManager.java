@@ -16,12 +16,15 @@ public class DeviceInfoManager {
 
     private  Context mContext;
 
+    private DeviceInfo deviceInfo;
+
     public DeviceInfoManager(Context context) {
         mContext = context;
+        deviceInfo = DeviceUtils.getDeviceInfo(mContext);
     }
 
-    public  Map<String, String> getRequestParam() {
-        DeviceInfo deviceInfo = DeviceUtils.getDeviceInfo(mContext);
+    public  Map<String, String> getRequestParam(String fromApp) {
+        deviceInfo.setFromApp(fromApp);
         String romName = getRomName();
         int colorOsVersion = getCorlorOSValue();
         if (romName != null) {
@@ -31,7 +34,6 @@ public class DeviceInfoManager {
 
         return deviceInfo.getMapRequestParam();
     }
-
 
     private static String getRomName() {
         if (TextUtils.isEmpty(COLOR_OS_ROM_NAME)) {

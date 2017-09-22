@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
         DeviceInfoManager manager = new DeviceInfoManager(this);
         Map<String, String> requestParam = manager.getRequestParam();
+        manager.setFromApp("5");
     }
 
 
