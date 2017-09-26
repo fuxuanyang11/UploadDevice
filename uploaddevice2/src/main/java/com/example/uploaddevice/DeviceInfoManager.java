@@ -25,7 +25,7 @@ public class DeviceInfoManager {
 
     public  Map<String, String> getRequestParam(String fromApp, String channel) {
         deviceInfo.setFromApp(fromApp);
-        deviceInfo.setFromApp(channel);
+        deviceInfo.setChannel(channel);
         String romName = getRomName();
         int colorOsVersion = getCorlorOSValue();
         if (romName != null) {
