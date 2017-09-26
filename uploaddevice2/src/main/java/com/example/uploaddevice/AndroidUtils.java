@@ -1,26 +1,20 @@
 package com.example.uploaddevice;
 
-import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.Signature;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.os.Build;
 import android.os.Environment;
-import android.os.IBinder;
 import android.os.StatFs;
 import android.os.StrictMode;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.view.Display;
-import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -39,11 +33,6 @@ public class AndroidUtils {
     private static int sdkVersion;
 
     private AndroidUtils() {
-    }
-
-    public static void hideSoftInput(Context context, IBinder windowToken) {
-        InputMethodManager imm = (InputMethodManager)context.getSystemService("input_method");
-        imm.hideSoftInputFromWindow(windowToken, 0);
     }
 
     public static void disableConnectionReuseIfNecessary() {
@@ -91,10 +80,6 @@ public class AndroidUtils {
         }
     }
 
-    public static int getMemoryClass(Context context) {
-        return ((ActivityManager)context.getSystemService("activity")).getMemoryClass();
-    }
-
     public static boolean hasHttpConnectionBug() {
         return Build.VERSION.SDK_INT < 8;
     }
@@ -107,13 +92,7 @@ public class AndroidUtils {
         return VersionUtils.hasHoneycomb();
     }
 
-    public static Size measureView(View view) {
-        ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
-        int widthSpec = View.MeasureSpec.makeMeasureSpec(layoutParams.width, 1073741824);
-        int heightSpec = View.MeasureSpec.makeMeasureSpec(layoutParams.height, 1073741824);
-        view.measure(widthSpec, heightSpec);
-        return new Size(view.getMeasuredWidth(), view.getMeasuredHeight());
-    }
+
 
     public static DisplayMetrics getDisplayMetrics(Context context) {
         Resources resources = context.getResources();
@@ -135,7 +114,7 @@ public class AndroidUtils {
 
     public static Size getScreenSize(Context context) {
         Point screenSize = new Point();
-        WindowManager wm = (WindowManager)context.getSystemService("window");
+        WindowManager wm = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
         Display display = wm.getDefaultDisplay();
         if(Build.VERSION.SDK_INT >= 13) {
             display.getSize(screenSize);
@@ -165,7 +144,7 @@ public class AndroidUtils {
 
     public static String getUUID(Context context) {
         if(uuid == null) {
-            TelephonyManager tm = (TelephonyManager)context.getSystemService("phone");
+            TelephonyManager tm = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
             String tmDevice = "" + tm.getDeviceId();
             String androidId = Settings.Secure.getString(context.getContentResolver(), "android_id");
             UUID deviceUuid = new UUID((long)androidId.hashCode(), (long)tmDevice.hashCode() << 32);
@@ -198,16 +177,6 @@ public class AndroidUtils {
         return false;
     }
 
-    public static String getAppSignatureFingerprint(Context context) {
-        try {
-            PackageManager e = context.getPackageManager();
-            String packageName = context.getPackageName();
-            Signature[] signs = e.getPackageInfo(packageName, 64).signatures;
-            return signs.length > 0?DigitalUtils.md5(signs[0].toByteArray()):null;
-        } catch (Exception var4) {
-            return null;
-        }
-    }
 
     //版本名
     public static String getVersionName(Context context) {
