@@ -51,7 +51,7 @@ public class DeviceInfoManager {
     private static int getCorlorOSValue() {
         int intValue;
         try {
-            intValue = ((Integer) ReflectHelp.invokeStatic(ReflectHelp.getClassFromName("com.color.os.ColorBuild"), "getColorOSVERSION", null, null)).intValue();
+            intValue = (Integer) ReflectHelp.invokeStatic(ReflectHelp.getClassFromName("com.color.os.ColorBuild"), "getColorOSVERSION", null, null);
         } catch (Exception e) {
             intValue = 0;
         }
