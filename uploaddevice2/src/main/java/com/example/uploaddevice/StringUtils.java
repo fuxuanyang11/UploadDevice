@@ -29,69 +29,7 @@ public class StringUtils {
         return !isEmpty(str);
     }
 
-    public static String buildQueryString(String url, Map<String, String> param, boolean urlEncode) {
-        try {
-            if (param != null) {
-                StringBuffer e = new StringBuffer();
-                Iterator i$ = param.keySet().iterator();
 
-                while (i$.hasNext()) {
-                    String key = (String) i$.next();
-                    String value = (String) param.get(key);
-                    if (!isEmpty(value)) {
-                        if (e.length() > 0) {
-                            e.append("&");
-                        }
-
-                        if (urlEncode) {
-                            e.append(key + "=" + URLEncoder.encode((String) param.get(key), "utf-8"));
-                        } else {
-                            e.append(key + "=" + value);
-                        }
-                    }
-                }
-
-                if (e.length() > 0) {
-                    url = url.contains("?") ? url + "&" : url + "?";
-                    url = url + e.toString();
-                }
-            }
-
-            return url;
-        } catch (Exception var7) {
-            return null;
-        }
-    }
-
-    public static String getByteString(int length) {
-        double kByte = (double) length / 1024.0D;
-        if (kByte > 1024.0D) {
-            double mByte = kByte / 1024.0D;
-            if (mByte > 1024.0D) {
-                double gByte = mByte / 1024.0D;
-                return String.format("%.2fG", new Object[]{Double.valueOf(gByte)});
-            } else {
-                return String.format("%.2fM", new Object[]{Double.valueOf(mByte)});
-            }
-        } else {
-            return String.format("%.0fk", new Object[]{Double.valueOf(kByte)});
-        }
-    }
-
-    public static String getByteString(long length) {
-        double kByte = (double) length / 1024.0D;
-        if (kByte > 1024.0D) {
-            double mByte = kByte / 1024.0D;
-            if (mByte > 1024.0D) {
-                double gByte = mByte / 1024.0D;
-                return String.format("%.2fG", new Object[]{Double.valueOf(gByte)});
-            } else {
-                return String.format("%.2fM", new Object[]{Double.valueOf(mByte)});
-            }
-        } else {
-            return String.format("%.0fk", new Object[]{Double.valueOf(kByte)});
-        }
-    }
 
     /**
      * 判断是否是正确的用户名（需要判断是否是手机号码或email）
@@ -139,19 +77,6 @@ public class StringUtils {
         return Pattern.matches(expr, email);
     }
 
-    public static SpannableStringBuilder textSpan(String text, int start, int end) {
-        SpannableStringBuilder stringBuilder = new SpannableStringBuilder(text);
-        ForegroundColorSpan colorSpan = new ForegroundColorSpan(Color.RED);
-        stringBuilder.setSpan(colorSpan, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        return stringBuilder;
-    }
 
-
-    public static Date stringToDate(String dateString) {
-        ParsePosition position = new ParsePosition(0);
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date dateValue = simpleDateFormat.parse(dateString, position);
-        return dateValue;
-    }
 
 }

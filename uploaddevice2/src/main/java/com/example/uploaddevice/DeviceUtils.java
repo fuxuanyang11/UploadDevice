@@ -3,16 +3,15 @@ package com.example.uploaddevice;
 import android.content.Context;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
-
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.util.Date;
 
 /**
  * Created by Bird1 on 16/10/12.
@@ -24,21 +23,6 @@ public class DeviceUtils {
 
         TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         deviceInfo.setImei(tm.getDeviceId());
-
-//        String serial = getProperty();
-//        if (TextUtils.isEmpty(serial)) {
-//            deviceInfo.setSerialNumber("");
-//        } else {
-//            deviceInfo.setSerialNumber(serial);
-//        }
-//
-//        String number = tm.getSimSerialNumber();
-//        if (TextUtils.isEmpty(number)) {
-//            deviceInfo.setSimSerialNumber("");
-//        } else {
-//            deviceInfo.setSimSerialNumber(number);
-//        }
-
         deviceInfo.setAndroidId(Settings.System.getString(context.getContentResolver(), Settings.System.ANDROID_ID));
 
         WifiManager wifi = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
@@ -55,36 +39,45 @@ public class DeviceUtils {
         deviceInfo.setSimOperatorName(tm.getSimOperatorName() + ":" + getProperty() + ":" + tm.getSimSerialNumber());
         deviceInfo.setSimCountryIso(tm.getSimCountryIso());
 
-        deviceInfo.setModel(android.os.Build.MODEL);
-        deviceInfo.setManufacturer(android.os.Build.MANUFACTURER);
-        deviceInfo.setHardware(android.os.Build.HARDWARE);
-        deviceInfo.setBrand(android.os.Build.BRAND);
-        deviceInfo.setRadio(android.os.Build.getRadioVersion());
-        deviceInfo.setDevice(android.os.Build.DEVICE);
-        deviceInfo.setProduct(android.os.Build.PRODUCT);
-        deviceInfo.setBoard(android.os.Build.BOARD);
-        deviceInfo.setIncrementa(android.os.Build.VERSION.INCREMENTAL);
+        deviceInfo.setModel(Build.MODEL);
+        deviceInfo.setManufacturer(Build.MANUFACTURER);
+        deviceInfo.setHardware(Build.HARDWARE);
+        deviceInfo.setBrand(Build.BRAND);
+        deviceInfo.setRadio(Build.getRadioVersion());
+        deviceInfo.setDevice(Build.DEVICE);
+        deviceInfo.setProduct(Build.PRODUCT);
+        deviceInfo.setBoard(Build.BOARD);
+        deviceInfo.setIncremental(Build.VERSION.INCREMENTAL);
 
-//        try {
-//            deviceInfo.setChannel(AppBase.channel);
-//        } catch (Exception e) {
-//
-//        }
-
-        deviceInfo.setAndroidVersion(android.os.Build.VERSION.RELEASE);
+        deviceInfo.setReleaseVersion(Build.VERSION.RELEASE);
 
         Size size = AndroidUtils.getScreenSize(context);
         deviceInfo.setScreenWidth(size.getWidth() + "");
         deviceInfo.setScreenHeight(size.getHeight() + "");
+        deviceInfo.setXdpi(size.getXdpi());
+        deviceInfo.setYdpi(size.getYdpi());
+        deviceInfo.setDensity(size.getDensity());
+        deviceInfo.setDensityDpi(size.getDensityDpi());
 
         deviceInfo.setAppVersion(AndroidUtils.getVersionName(context));
         deviceInfo.setFromApp(Media.getFromApp() + "");
 
-        deviceInfo.setCpuAbi(android.os.Build.CPU_ABI);
-        deviceInfo.setCpuAbi2(android.os.Build.CPU_ABI2);
-        deviceInfo.setFingerprint(android.os.Build.FINGERPRINT);
+        deviceInfo.setCpuAbi(Build.CPU_ABI);
+        deviceInfo.setCpuAbi2(Build.CPU_ABI2);
+        deviceInfo.setFingerprint(Build.FINGERPRINT);
+        deviceInfo.setCreateTime((System.currentTimeMillis()) + "");
 
-        deviceInfo.setCreateTime((new Date().getTime()) + "");
+        deviceInfo.setDisplay(Build.DISPLAY);
+        deviceInfo.setCpu(getCpuInfo());
+        deviceInfo.setType(Build.TYPE);
+        deviceInfo.setBaseOS(Build.VERSION.BASE_OS);
+        deviceInfo.setSdkVersion(Build.VERSION.SDK_INT);
+        deviceInfo.setBootloader(Build.BOOTLOADER);
+        deviceInfo.setHost(Build.HOST);
+        deviceInfo.setAllMemory(MemoryUtil.getTotal());
+        deviceInfo.setAvailMemory(MemoryUtil.getFreeMemory());
+        deviceInfo.setAvailSpaceOfData(SpaceUtil.getAvailSpaceOfData());
+        deviceInfo.setAvailSpaceOfSDC(SpaceUtil.getAvailSpaceOfSDC());
 
         return deviceInfo;
     }
@@ -196,5 +189,27 @@ public class DeviceUtils {
 
     }
 
+    public static String getCpuInfo() {
+        String str1 = "/proc/cpuinfo";
+        String str2="";
+
+        try {
+            FileReader fr = new FileReader(str1);
+            BufferedReader localBufferedReader = new BufferedReader(fr, 228192);
+            while((str2 = localBufferedReader.readLine())!=null){
+                if(str2.toLowerCase().contains("hardware")){
+                    if(str2.contains(":")) {
+                        str2 = str2.split(":")[1].trim().toLowerCase();
+                    }
+                    break;
+                }
+            }
+            localBufferedReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return str2;
+    }
 
 }

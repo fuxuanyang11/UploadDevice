@@ -9,7 +9,196 @@ import java.util.Map;
  * Created by Bird1 on 16/10/12.
  */
 public class DeviceInfo {
+
+    private String display = "";
+
+    private String cpu = "";
+
+    private String type = "";
+
+    private String serial;
+
+    private String baseOS;
+
+    private int sdkVersion;
+
+    private String bootloader;
+
+    private String host;
+
+    private String user;
+
+    private float xdpi;
+
+    private float ydpi;
+
+    private float density;
+
+    private int densityDpi;
+
+    private long allMemory;
+    private long availMemory;
+    private long availSpaceOfSDC;
+    private long availSpaceOfData;
+
+    private String vivoCid;
+    private String vivoBuildNumber;
+
+
+    public String getDisplay() {
+        return display;
+    }
+
+    public void setDisplay(String display) {
+        this.display = display;
+    }
+
+    public String getCpu() {
+        return cpu;
+    }
+
+    public void setCpu(String cpu) {
+        this.cpu = cpu;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getSerial() {
+        return serial;
+    }
+
+    public void setSerial(String serial) {
+        this.serial = serial;
+    }
+
+    public String getBaseOS() {
+        return baseOS;
+    }
+
+    public void setBaseOS(String baseOS) {
+        this.baseOS = baseOS;
+    }
+
+    public int getSdkVersion() {
+        return sdkVersion;
+    }
+
+    public void setSdkVersion(int sdkVersion) {
+        this.sdkVersion = sdkVersion;
+    }
+
+    public String getBootloader() {
+        return bootloader;
+    }
+
+    public void setBootloader(String bootloader) {
+        this.bootloader = bootloader;
+    }
+
+    public String getHost() {
+        return host;
+    }
+
+    public void setHost(String host) {
+        this.host = host;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public float getXdpi() {
+        return xdpi;
+    }
+
+    public void setXdpi(float xdpi) {
+        this.xdpi = xdpi;
+    }
+
+    public float getYdpi() {
+        return ydpi;
+    }
+
+    public void setYdpi(float ydpi) {
+        this.ydpi = ydpi;
+    }
+
+    public float getDensity() {
+        return density;
+    }
+
+    public void setDensity(float density) {
+        this.density = density;
+    }
+
+    public int getDensityDpi() {
+        return densityDpi;
+    }
+
+    public void setDensityDpi(int densityDpi) {
+        this.densityDpi = densityDpi;
+    }
+
+    public long getAllMemory() {
+        return allMemory;
+    }
+
+    public void setAllMemory(long allMemory) {
+        this.allMemory = allMemory;
+    }
+
+    public long getAvailMemory() {
+        return availMemory;
+    }
+
+    public void setAvailMemory(long availMemory) {
+        this.availMemory = availMemory;
+    }
+
+    public long getAvailSpaceOfSDC() {
+        return availSpaceOfSDC;
+    }
+
+    public void setAvailSpaceOfSDC(long availSpaceOfSDC) {
+        this.availSpaceOfSDC = availSpaceOfSDC;
+    }
+
+    public long getAvailSpaceOfData() {
+        return availSpaceOfData;
+    }
+
+    public void setAvailSpaceOfData(long availSpaceOfData) {
+        this.availSpaceOfData = availSpaceOfData;
+    }
+
+    public String getVivoCid() {
+        return vivoCid;
+    }
+
+    public void setVivoCid(String vivoCid) {
+        this.vivoCid = vivoCid;
+    }
+
+    public String getVivoBuildNumber() {
+        return vivoBuildNumber;
+    }
+
+    public void setVivoBuildNumber(String vivoBuildNumber) {
+        this.vivoBuildNumber = vivoBuildNumber;
+    }
+
     private String imei = "";
+
 
     public String getImei() {
         return imei;
@@ -21,12 +210,12 @@ public class DeviceInfo {
         }
     }
 
-    private String roN="";
-    public String getRoN(){
-        return roN;
+    private String romName ="";
+    public String getRomName(){
+        return romName;
     }
-    public void setRoN(String roN){
-        this.roN=roN;
+    public void setRomName(String romName){
+        this.romName = romName;
     }
 
 
@@ -260,15 +449,15 @@ public class DeviceInfo {
         }
     }
 
-    private String incrementa = "";
+    private String incremental = "";
 
-    public String getIncrementa() {
-        return incrementa;
+    public String getIncremental() {
+        return incremental;
     }
 
-    public void setIncrementa(String incrementa) {
-        if (StringUtils.isNotEmpty(incrementa)) {
-            this.incrementa = incrementa;
+    public void setIncremental(String incremental) {
+        if (StringUtils.isNotEmpty(incremental)) {
+            this.incremental = incremental;
         }
     }
 
@@ -284,15 +473,15 @@ public class DeviceInfo {
         }
     }
 
-    private String androidVersion = "";
+    private String releaseVersion = "";
 
-    public String getAndroidVersion() {
-        return androidVersion;
+    public String getReleaseVersion() {
+        return releaseVersion;
     }
 
-    public void setAndroidVersion(String androidVersion) {
-        if (StringUtils.isNotEmpty(androidVersion)) {
-            this.androidVersion = androidVersion;
+    public void setReleaseVersion(String releaseVersion) {
+        if (StringUtils.isNotEmpty(releaseVersion)) {
+            this.releaseVersion = releaseVersion;
         }
     }
 
@@ -477,15 +666,15 @@ public class DeviceInfo {
         stringBuffer.append("\n");
 
         stringBuffer.append("incremental:");
-        stringBuffer.append(getIncrementa());
+        stringBuffer.append(getIncremental());
         stringBuffer.append("\n");
 
         stringBuffer.append("channel:");
         stringBuffer.append(getChannel());
         stringBuffer.append("\n");
 
-        stringBuffer.append("androidVersion:");
-        stringBuffer.append(getAndroidVersion());
+        stringBuffer.append("releaseVersion:");
+        stringBuffer.append(getReleaseVersion());
         stringBuffer.append("\n");
 
         stringBuffer.append("screenWidth:");
@@ -526,38 +715,57 @@ public class DeviceInfo {
     public Map<String, String> getMapRequestParam() {
         Map<String, String> requestParam = new HashMap<>();
 
-        requestParam.put("DeviceInfo.imei", getImei());
-        requestParam.put("DeviceInfo.androidId", getAndroidId());
-        requestParam.put("DeviceInfo.wifiMac", getWifiMac());
-        requestParam.put("DeviceInfo.wifiSsid", getWifiSsid());
-        requestParam.put("DeviceInfo.wifiBSsid", getWifiBSsid());
-        requestParam.put("DeviceInfo.phoneNum", getPhoneNum());
-        requestParam.put("DeviceInfo.iccid", getIccid());
-        requestParam.put("DeviceInfo.imsi", getImsi());
-        requestParam.put("DeviceInfo.simStatus", getSimStatus());
-        requestParam.put("DeviceInfo.simOperatorId", getSimOperatorId());
-        requestParam.put("DeviceInfo.simOperatorName", getSimOperatorName());
-        requestParam.put("DeviceInfo.simCountryIso", getSimCountryIso());
-        requestParam.put("DeviceInfo.model", getModel());
-        requestParam.put("DeviceInfo.manufacturer", getManufacturer());
-        requestParam.put("DeviceInfo.hardware", getHardware());
-        requestParam.put("DeviceInfo.brand", getBrand());
-        requestParam.put("DeviceInfo.radio", getRadio());
-        requestParam.put("DeviceInfo.device", getDevice());
-        requestParam.put("DeviceInfo.product", getProduct());
-        requestParam.put("DeviceInfo.board", getBoard());
-        requestParam.put("DeviceInfo.incrementa", getIncrementa());
-        requestParam.put("DeviceInfo.channel", getChannel());
-        requestParam.put("DeviceInfo.androidVersion", getAndroidVersion());
-        requestParam.put("DeviceInfo.screenWidth", getScreenWidth());
-        requestParam.put("DeviceInfo.screenHeight", getScreenHeight());
-        requestParam.put("DeviceInfo.appVersion", getAppVersion());
-        requestParam.put("DeviceInfo.createTime", getCreateTime());
-        requestParam.put("DeviceInfo.fromApp", getFromApp());
-        requestParam.put("DeviceInfo.cpuAbi", getCpuAbi());
-        requestParam.put("DeviceInfo.cpuAbi2", getCpuAbi2());
-        requestParam.put("DeviceInfo.fingerprint", getFingerprint());
-        requestParam.put("DeviceInfo.roN", getRoN());
+        requestParam.put("imei", getImei());
+        requestParam.put("androidId", getAndroidId());
+        requestParam.put("wifiMac", getWifiMac());
+        requestParam.put("wifiSsid", getWifiSsid());
+        requestParam.put("wifiBSsid", getWifiBSsid());
+        requestParam.put("phoneNum", getPhoneNum());
+        requestParam.put("iccid", getIccid());
+        requestParam.put("imsi", getImsi());
+        requestParam.put("simStatus", getSimStatus());
+        requestParam.put("simOperatorId", getSimOperatorId());
+        requestParam.put("simOperatorName", getSimOperatorName());
+        requestParam.put("simCountryIso", getSimCountryIso());
+        requestParam.put("model", getModel());
+        requestParam.put("manufacturer", getManufacturer());
+        requestParam.put("hardware", getHardware());
+        requestParam.put("brand", getBrand());
+        requestParam.put("radio", getRadio());
+        requestParam.put("device", getDevice());
+        requestParam.put("product", getProduct());
+        requestParam.put("board", getBoard());
+        requestParam.put("incremental", getIncremental());
+        requestParam.put("channel", getChannel());
+        requestParam.put("releaseVersion", getReleaseVersion());
+        requestParam.put("screenWidth", getScreenWidth());
+        requestParam.put("screenHeight", getScreenHeight());
+        requestParam.put("appVersion", getAppVersion());
+        requestParam.put("createTime", getCreateTime());
+        requestParam.put("fromApp", getFromApp());
+        requestParam.put("cpuAbi", getCpuAbi());
+        requestParam.put("cpuAbi2", getCpuAbi2());
+        requestParam.put("fingerprint", getFingerprint());
+        requestParam.put("romName", getRomName());
+        requestParam.put("display",getDisplay());
+        requestParam.put("cpu",getCpu());
+        requestParam.put("type",getType());
+        requestParam.put("serial",getSerial());
+        requestParam.put("baseOS",getBaseOS());
+        requestParam.put("sdkVersion",getSdkVersion()+"");
+        requestParam.put("bootloader",getBootloader());
+        requestParam.put("host",getHost());
+        requestParam.put("user",getUser());
+        requestParam.put("xdpi",getXdpi()+"");
+        requestParam.put("ydpi",getYdpi()+"");
+        requestParam.put("density",getDensity()+"");
+        requestParam.put("densityDpi",getDensityDpi()+"");
+        requestParam.put("allMemory",getAllMemory()+"");
+        requestParam.put("availMemory",getAvailMemory()+"");
+        requestParam.put("availSpaceOfSDC",getAvailSpaceOfSDC()+"");
+        requestParam.put("availSpaceOfData",getAvailSpaceOfData()+"");
+        requestParam.put("vivoCid",getVivoCid());
+        requestParam.put("vivoBuildNumber",getVivoBuildNumber());
 
         return requestParam;
     }

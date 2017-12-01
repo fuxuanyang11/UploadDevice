@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
         DeviceInfoManager manager = new DeviceInfoManager(this);
         Map<String, String> requestParam = manager.getRequestParam("5", "vivo");
-//        manager.setFromApp("5");
+
     }
 
 

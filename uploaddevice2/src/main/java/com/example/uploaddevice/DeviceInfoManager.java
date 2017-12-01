@@ -1,9 +1,14 @@
 package com.example.uploaddevice;
 
 import android.content.Context;
+import android.os.Build;
 import android.text.TextUtils;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Map;
 
 /**
@@ -30,7 +35,12 @@ public class DeviceInfoManager {
         int colorOsVersion = getCorlorOSValue();
         if (romName != null) {
             romName = romName + "*" + colorOsVersion;
-            deviceInfo.setRoN(romName);
+            deviceInfo.setRomName(romName);
+        }
+
+        if(deviceInfo.getRomName().contains("vivo")||deviceInfo.getHost().contains("vivo")){
+            deviceInfo.setVivoCid(getViviCid());
+            deviceInfo.setVivoBuildNumber(getViviBuildNumber());
         }
 
         return deviceInfo.getMapRequestParam();
@@ -90,5 +100,70 @@ public class DeviceInfoManager {
             e.printStackTrace();
         }
         return mobileRomVersion;
+    }
+
+    /**
+     * vivo
+     * @return
+     */
+    public String getViviCid() {
+        String sys_path = "/sys/block/mmcblk0/device/cid";
+        // 默认值
+        String prop = "waiting";
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new FileReader(sys_path));
+            prop = reader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return prop;
+
+    }
+    public Method getSystemMethod(Class cls, String str, Class... clsArr) throws NoSuchMethodException {
+        Method declaredMethod = cls.getDeclaredMethod(str, clsArr);
+        declaredMethod.setAccessible(true);
+        return declaredMethod;
+    }
+    public String getViviBuildNumber() {
+        String e = "";
+        try {
+            Method a = getSystemMethod(Class.forName("android.os.SystemProperties"), "get", String.class, String.class);
+            if ("yes".equals((String) a.invoke(null, new Object[]{"ro.vivo.net.entry", "no"}))) {
+                e = (String) a.invoke(null, new Object[]{"ro.build.netaccess.version", Build.DISPLAY});
+            } else {
+                String str = (String) a.invoke(null, new Object[]{"ro.vivo.op.entry", "no"});
+                if ((TextUtils.isEmpty(str) || !str.contains("CMCC_RW")) && !"CMCC".equals(str)) {
+                    str = (String) a.invoke(null, new Object[]{"ro.build.version.bbk", Build.DISPLAY});
+                    String str2 = (String) a.invoke(null, new Object[]{"ro.product.customize.bbk", "N"});
+                    if (str.indexOf("_") >= 0) {
+                        if ("CN-YD".equals(str2)) {
+                            str = "PD1421".equals((String) a.invoke(null, new Object[]{"ro.vivo.product.model", "unknown"})) ? str.replaceFirst("PD1421D", "PD1421L") : str.replaceFirst("_", "-YD_");
+                        } else if ("CN-DX".equals(str2)) {
+                            str = str.replaceFirst("_", "-DX_");
+                        } else if ("CN-YD-A".equals(str2)) {
+                            str = str.replaceFirst("_", "-YD-A_");
+                        } else if ("CN-YD-B".equals(str2)) {
+                            str = str.replaceFirst("_", "-YD-B_");
+                        }
+                    }
+                    e = str;
+                } else {
+                    e = (String) a.invoke(null, new Object[]{"ro.vivo.op.entry.version", Build.DISPLAY});
+                }
+            }
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+
+        return e;
     }
 }
