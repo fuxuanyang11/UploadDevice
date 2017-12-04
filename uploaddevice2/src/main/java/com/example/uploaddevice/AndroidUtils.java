@@ -12,7 +12,7 @@ import android.view.WindowManager;
  */
 public class AndroidUtils {
 
-    
+
     public static Size getScreenSize(Context context) {
         WindowManager wm = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
 
