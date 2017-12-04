@@ -25,7 +25,7 @@ public class DeviceInfoManager {
 
     public DeviceInfoManager(Context context) {
         mContext = context;
-        deviceInfo = DeviceUtils.getDeviceInfo(mContext);
+//        deviceInfo = DeviceUtils.getDeviceInfo(mContext);
     }
 
     public  Map<String, String> getRequestParam(String fromApp, String channel) {
