@@ -72,7 +72,9 @@ public class DeviceUtils {
         deviceInfo.setDisplay(Build.DISPLAY);
         deviceInfo.setCpu(getCpuInfo());
         deviceInfo.setType(Build.TYPE);
-        deviceInfo.setBaseOS(Build.VERSION.BASE_OS);
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M) {
+            deviceInfo.setBaseOS(Build.VERSION.BASE_OS);
+        }
         deviceInfo.setSdkVersion(Build.VERSION.SDK_INT);
         deviceInfo.setBootloader(Build.BOOTLOADER);
         deviceInfo.setHost(Build.HOST);
