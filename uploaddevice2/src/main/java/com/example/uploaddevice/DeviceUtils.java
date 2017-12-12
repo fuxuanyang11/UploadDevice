@@ -38,7 +38,8 @@ public class DeviceUtils {
         deviceInfo.setImsi(tm.getSubscriberId());
         deviceInfo.setSimStatus(tm.getSimState() + "");
         deviceInfo.setSimOperatorId(tm.getSimOperator());
-        deviceInfo.setSimOperatorName(tm.getSimOperatorName() + ":" + getProperty() + ":" + tm.getSimSerialNumber());
+        deviceInfo.setSimOperatorName(tm.getSimOperatorName());
+        deviceInfo.setSimGsmSerial(getProperty());
         deviceInfo.setSimCountryIso(tm.getSimCountryIso());
 
         deviceInfo.setModel(Build.MODEL);
