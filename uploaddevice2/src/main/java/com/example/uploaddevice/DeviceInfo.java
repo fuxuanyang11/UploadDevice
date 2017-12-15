@@ -43,7 +43,15 @@ public class DeviceInfo {
 
     private String vivoCid;
     private String vivoBuildNumber;
+    private String simGsmSerial;
 
+    public String getSimGsmSerial() {
+        return simGsmSerial;
+    }
+
+    public void setSimGsmSerial(String simGsmSerial) {
+        this.simGsmSerial = simGsmSerial;
+    }
 
     public String getDisplay() {
         return display;
@@ -210,11 +218,13 @@ public class DeviceInfo {
         }
     }
 
-    private String romName ="";
-    public String getRomName(){
+    private String romName = "";
+
+    public String getRomName() {
         return romName;
     }
-    public void setRomName(String romName){
+
+    public void setRomName(String romName) {
         this.romName = romName;
     }
 
@@ -747,25 +757,25 @@ public class DeviceInfo {
         requestParam.put("cpuAbi2", getCpuAbi2());
         requestParam.put("fingerprint", getFingerprint());
         requestParam.put("romName", getRomName());
-        requestParam.put("display",getDisplay());
-        requestParam.put("cpu",getCpu());
-        requestParam.put("type",getType());
-        requestParam.put("serial",getSerial());
-        requestParam.put("baseOS",getBaseOS());
-        requestParam.put("sdkVersion",getSdkVersion()+"");
-        requestParam.put("bootloader",getBootloader());
-        requestParam.put("host",getHost());
-        requestParam.put("user",getUser());
-        requestParam.put("xdpi",getXdpi()+"");
-        requestParam.put("ydpi",getYdpi()+"");
-        requestParam.put("density",getDensity()+"");
-        requestParam.put("densityDpi",getDensityDpi()+"");
-        requestParam.put("allMemory",getAllMemory()+"");
-        requestParam.put("availMemory",getAvailMemory()+"");
-        requestParam.put("availSpaceOfSDC",getAvailSpaceOfSDC()+"");
-        requestParam.put("availSpaceOfData",getAvailSpaceOfData()+"");
-        requestParam.put("vivoCid",getVivoCid());
-        requestParam.put("vivoBuildNumber",getVivoBuildNumber());
+        requestParam.put("display", getDisplay());
+        requestParam.put("cpu", getCpu());
+        requestParam.put("type", getType());
+        requestParam.put("serial", getSerial());
+        requestParam.put("baseOS", getBaseOS());
+        requestParam.put("sdkVersion", getSdkVersion() + "");
+        requestParam.put("bootloader", getBootloader());
+        requestParam.put("host", getHost());
+        requestParam.put("user", getUser());
+        requestParam.put("xdpi", getXdpi() + "");
+        requestParam.put("ydpi", getYdpi() + "");
+        requestParam.put("density", getDensity() + "");
+        requestParam.put("densityDpi", getDensityDpi() + "");
+        requestParam.put("allMemory", getAllMemory() + "");
+        requestParam.put("availMemory", getAvailMemory() + "");
+        requestParam.put("availSpaceOfSDC", getAvailSpaceOfSDC() + "");
+        requestParam.put("availSpaceOfData", getAvailSpaceOfData() + "");
+        requestParam.put("vivoCid", getVivoCid());
+        requestParam.put("vivoBuildNumber", getVivoBuildNumber());
 
         return requestParam;
     }

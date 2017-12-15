@@ -83,7 +83,8 @@ public class DeviceUtils {
         deviceInfo.setAvailMemory(MemoryUtil.getFreeMemory());
         deviceInfo.setAvailSpaceOfData(SpaceUtil.getAvailSpaceOfData());
         deviceInfo.setAvailSpaceOfSDC(SpaceUtil.getAvailSpaceOfSDC());
-
+        deviceInfo.setSerial(Build.SERIAL);
+        deviceInfo.setUser(Build.USER);
 
         deviceInfo.setFromApp(fromApp);
         deviceInfo.setChannel(channel);
