@@ -45,6 +45,39 @@ public class DeviceInfo {
     private String vivoBuildNumber;
     private String simGsmSerial;
 
+    private String imei = "";
+    private String romName = "";
+    private String androidId = "";
+    private String wifiMac = "";
+    private String wifiSsid = "";
+    private String wifiBSsid = "";
+    private String phoneNum = "";
+    private String iccid = "";
+    private String imsi = "";
+    private String simStatus = "";
+    private String simOperatorId = "";
+    private String simOperatorName = "";
+    private String simCountryIso = "";
+    private String model = "";
+    private String manufacturer = "";
+    private String hardware = "";
+    private String brand = "";
+    private String radio = "";
+    private String device = "";
+    private String product = "";
+    private String board = "";
+    private String incremental = "";
+    private String channel = "";
+    private String releaseVersion = "";
+    private String screenWidth = "";
+    private String screenHeight = "";
+    private String appVersion = "";
+    private String createTime = "";
+    private String fromApp = "";
+    private String cpuAbi = "";
+    private String cpuAbi2 = "";
+    private String fingerprint = "";
+
     public String getSimGsmSerial() {
         return simGsmSerial;
     }
@@ -205,7 +238,7 @@ public class DeviceInfo {
         this.vivoBuildNumber = vivoBuildNumber;
     }
 
-    private String imei = "";
+
 
 
     public String getImei() {
@@ -218,7 +251,7 @@ public class DeviceInfo {
         }
     }
 
-    private String romName = "";
+
 
     public String getRomName() {
         return romName;
@@ -229,7 +262,7 @@ public class DeviceInfo {
     }
 
 
-    private String androidId = "";
+
 
     public String getAndroidId() {
         return androidId;
@@ -241,7 +274,7 @@ public class DeviceInfo {
         }
     }
 
-    private String wifiMac = "";
+
 
     public String getWifiMac() {
         return wifiMac;
@@ -255,7 +288,7 @@ public class DeviceInfo {
         }
     }
 
-    private String wifiSsid = "";
+
 
     public String getWifiSsid() {
         return wifiSsid;
@@ -267,7 +300,7 @@ public class DeviceInfo {
         }
     }
 
-    private String wifiBSsid = "";
+
 
     public String getWifiBSsid() {
         return wifiBSsid;
@@ -279,7 +312,7 @@ public class DeviceInfo {
         }
     }
 
-    private String phoneNum = "";
+
 
     public String getPhoneNum() {
         return phoneNum;
@@ -291,7 +324,7 @@ public class DeviceInfo {
         }
     }
 
-    private String iccid = "";
+
 
     public String getIccid() {
         return iccid;
@@ -303,7 +336,7 @@ public class DeviceInfo {
         }
     }
 
-    private String imsi = "";
+
 
     public String getImsi() {
         return imsi;
@@ -315,7 +348,7 @@ public class DeviceInfo {
         }
     }
 
-    private String simStatus = "";
+
 
     public String getSimStatus() {
         return simStatus;
@@ -327,7 +360,7 @@ public class DeviceInfo {
         }
     }
 
-    private String simOperatorId = "";
+
 
     public String getSimOperatorId() {
         return simOperatorId;
@@ -339,7 +372,7 @@ public class DeviceInfo {
         }
     }
 
-    private String simOperatorName = "";
+
 
     public String getSimOperatorName() {
         return simOperatorName;
@@ -351,7 +384,7 @@ public class DeviceInfo {
         }
     }
 
-    private String simCountryIso = "";
+
 
     public String getSimCountryIso() {
         return simCountryIso;
@@ -363,7 +396,7 @@ public class DeviceInfo {
         }
     }
 
-    private String model = "";
+
 
     public String getModel() {
         return model;
@@ -375,7 +408,7 @@ public class DeviceInfo {
         }
     }
 
-    private String manufacturer = "";
+
 
     public String getManufacturer() {
         return manufacturer;
@@ -387,7 +420,7 @@ public class DeviceInfo {
         }
     }
 
-    private String hardware = "";
+
 
     public String getHardware() {
         return hardware;
@@ -399,7 +432,7 @@ public class DeviceInfo {
         }
     }
 
-    private String brand = "";
+
 
     public String getBrand() {
         return brand;
@@ -411,7 +444,7 @@ public class DeviceInfo {
         }
     }
 
-    private String radio = "";
+
 
     public String getRadio() {
         return radio;
@@ -423,7 +456,7 @@ public class DeviceInfo {
         }
     }
 
-    private String device = "";
+
 
     public String getDevice() {
         return device;
@@ -435,7 +468,7 @@ public class DeviceInfo {
         }
     }
 
-    private String product = "";
+
 
     public String getProduct() {
         return product;
@@ -447,7 +480,7 @@ public class DeviceInfo {
         }
     }
 
-    private String board = "";
+
 
     public String getBoard() {
         return board;
@@ -459,7 +492,7 @@ public class DeviceInfo {
         }
     }
 
-    private String incremental = "";
+
 
     public String getIncremental() {
         return incremental;
@@ -471,7 +504,7 @@ public class DeviceInfo {
         }
     }
 
-    private String channel = "";
+
 
     public String getChannel() {
         return channel;
@@ -483,7 +516,7 @@ public class DeviceInfo {
         }
     }
 
-    private String releaseVersion = "";
+
 
     public String getReleaseVersion() {
         return releaseVersion;
@@ -495,7 +528,7 @@ public class DeviceInfo {
         }
     }
 
-    private String screenWidth = "";
+
 
     public String getScreenWidth() {
         return screenWidth;
@@ -507,7 +540,7 @@ public class DeviceInfo {
         }
     }
 
-    private String screenHeight = "";
+
 
     public String getScreenHeight() {
         return screenHeight;
@@ -519,7 +552,7 @@ public class DeviceInfo {
         }
     }
 
-    private String appVersion = "";
+
 
     public String getAppVersion() {
         return appVersion;
@@ -531,7 +564,7 @@ public class DeviceInfo {
         }
     }
 
-    private String createTime = "";
+
 
     public String getCreateTime() {
         return createTime;
@@ -543,7 +576,7 @@ public class DeviceInfo {
         }
     }
 
-    private String fromApp = "";
+
 
     public String getFromApp() {
         return fromApp;
@@ -555,7 +588,7 @@ public class DeviceInfo {
         }
     }
 
-    private String cpuAbi = "";
+
 
     public String getCpuAbi() {
         return cpuAbi;
@@ -567,7 +600,7 @@ public class DeviceInfo {
         }
     }
 
-    private String cpuAbi2 = "";
+
 
     public String getCpuAbi2() {
         return cpuAbi2;
@@ -579,7 +612,7 @@ public class DeviceInfo {
         }
     }
 
-    private String fingerprint = "";
+
 
     public String getFingerprint() {
         return fingerprint;
